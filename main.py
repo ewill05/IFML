@@ -6,12 +6,29 @@ from utils import (
     get_available_themes, get_current_theme_name
 )
 
-from logger_tab import build_logger_tab
+try:
+    from logger_tab import build_logger_tab
+except Exception:
+    def build_logger_tab(notebook: ttk.Notebook):
+        frame = ttk.Frame(notebook)
+        notebook.add(frame, text="\ud83d\udcf7 Logger")
+        ttk.Label(frame, text="pandas is required for the Logger tab").pack(padx=10, pady=10)
+
 try:
     from species_db import build_species_db_tab
-except ImportError:
-    from species_db import build_species_tab as build_species_db_tab
-from audit_tab import build_audit_tab
+except Exception:
+    def build_species_db_tab(notebook: ttk.Notebook, default_path: str = ""):
+        frame = ttk.Frame(notebook)
+        notebook.add(frame, text="\ud83c\udf33 Species DB")
+        ttk.Label(frame, text="pandas is required for the Species DB tab").pack(padx=10, pady=10)
+
+try:
+    from audit_tab import build_audit_tab
+except Exception:
+    def build_audit_tab(notebook: ttk.Notebook):
+        frame = ttk.Frame(notebook)
+        notebook.add(frame, text="\ud83d\udcca Audit")
+        ttk.Label(frame, text="pandas is required for the Audit tab").pack(padx=10, pady=10)
 
 APP_NAME = "IFML – TimberView"
 
@@ -58,8 +75,12 @@ def build_theme_menu(root: tk.Tk, menubar: tk.Menu):
             command=lambda n=name: on_change(n)
         )
 
-def main():
-    root = tk.Tk()
+def main() -> int:
+    try:
+        root = tk.Tk()
+    except tk.TclError as e:
+        print(f"Tkinter failed to initialize: {e}")
+        return 1
     root.title(APP_NAME)
     root.geometry("1220x780")
     root.minsize(1060, 640)
@@ -89,6 +110,8 @@ def main():
     build_theme_menu(root, menubar)
 
     root.mainloop()
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
