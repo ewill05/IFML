@@ -79,8 +79,8 @@ def main() -> int:
     try:
         root = tk.Tk()
     except tk.TclError as e:
-        print(f"Tkinter failed to initialize: {e}")
-        return 1
+        print(f"GUI disabled: {e}")
+        return 0
     root.title(APP_NAME)
     root.geometry("1220x780")
     root.minsize(1060, 640)
