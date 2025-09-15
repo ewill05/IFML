@@ -1,6 +1,127 @@
-ID,Common Name,Genus,Species
-1,Bur Oak,Quercus,macrocarpa
-2,Bitternut Hickory,Carya,cordiformis
-3,Red Maple,Acer,rubrum
-4,White Oak,Quercus,alba
-5,American Beech,Fagus,grandifolia
+Species Name,Common Name,Genus,Species,Type,Group,Leaf Arrangement,Leaf Type,Leaf Margin
+Acer negundo ,box elder,Acer,negundo ,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer nigrum ,black maple,Acer,nigrum ,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer platanoides,Norway maple,Acer,platanoides,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer rubrum,red maple,Acer,rubrum,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer saccharinum ,silver maple,Acer,saccharinum ,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer saccharum,sugar maple,Acer,saccharum,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Acer ginnala,Amur maple,Acer,ginnala,Deciduous,Maple,Opposite,Simple,Lobed/Serrated
+Aesculus glabra ,Ohio buckeye,Aesculus,glabra ,,,,,
+Aesculus hipposcatanum,horse chestnut,Aesculus,hipposcatanum,,,,,
+Alnus incana,gray alder,Alnus,incana,,,,,
+Alnus rugosa,speckled alder,Alnus,rugosa,,,,,
+Amelanchier arborea ,serviceberry,Amelanchier,arborea ,,,,,
+Amelanchier canadensis ,Canadian serviceberry,Amelanchier,canadensis ,,,,,
+Asimina triloba,pawpaw,Asimina,triloba,Deciduous,Pawpaw,Alternate,Simple,Entire
+Betula alleghaniensis,yellow birch,Betula,alleghaniensis,,,,,
+Betula nigra,river birch,Betula,nigra,,,,,
+Betula papyrifera,paper birch,Betula,papyrifera,,,,,
+Carpinus caroliniana ,"ironwood, musclewood",Carpinus,caroliniana ,,,,,
+Carya cordiformis ,bitternut hickory,Carya,cordiformis ,Deciduous,Hickory,Alternate,Compound,Serrated
+Carya illinoensis ,pecan,Carya,illinoensis ,Deciduous,Hickory,Alternate,Compound,Serrated
+Carya ovata,shagbark hickory,Carya,ovata,Deciduous,Hickory,Alternate,Compound,Serrated
+Castanea mollissima,Chinese chestnut,Castanea,mollissima,,,,,
+Catalpa speciosa,northern catalpa,Catalpa,speciosa,,,,,
+Celtis occidentalis ,hackberry,Celtis,occidentalis ,Deciduous,Hackberry,Alternate,Simple,Serrated
+Cercis canadensis,red bud,Cercis,canadensis,,,,,
+Cladrastis kentukea,American yellowood,Cladrastis,kentukea,,,,,
+Cornus drummondii,roughleaf dogwood,Cornus,drummondii,Deciduous,Dogwood,Opposite,Simple,Entire/Slightly Wavy
+Cornus florida,flowering dogwood,Cornus,florida,Deciduous,Dogwood,Opposite,Simple,Entire/Slightly Wavy
+Corylus americana ,hazelnut,Corylus,americana ,,,,,
+Crataegus spp.,hawthorns,Crataegus,spp.,,,,,
+Fagus grandifolia,beech,Fagus,grandifolia,,,,,
+Fraxinus amerciana,white ash,Fraxinus,amerciana,Deciduous,Ash,Opposite,Compound,Serrated
+Fraxinus nigra,black ash ,Fraxinus,nigra,Deciduous,Ash,Opposite,Compound,Serrated
+Fraxinus pennsylvanica,green ash,Fraxinus,pennsylvanica,Deciduous,Ash,Opposite,Compound,Serrated
+Ginkgo biloba,ginkgo,Ginkgo,biloba,,,,,
+Gleditsia triacanthos,honey locust,Gleditsia,triacanthos,Deciduous,Locust,Alternate,Compound,Serrated/Entire
+Gymnocladus dioicus ,Kentucky coffee tree,Gymnocladus,dioicus ,Deciduous,Coffee tree,Alternate,Compound,Entire
+Hamamelis virginiana,Witch hazel,Hamamelis,virginiana,,,,,
+Juglans nigra,black walnut,Juglans,nigra,Deciduous,Walnut,Alternate,Compound,Serrated
+Larix decidua,European larch,Larix,decidua,Conifer,Larch,Needle-like,Needle,Entire
+Larix larcina,"tamarack, eastern larch",Larix,larcina,Conifer,Larch,Needle-like,Needle,Entire
+Liriodendron tulipifera ,tulip tree,Liriodendron,tulipifera ,,,,,
+Magnolia spp.,magnolias,Magnolia,spp.,,,,,
+Malus spp.,"apple, crabapple",Malus,spp.,,,,,
+Nyssa sylvatica,"black gum, black tupelo",Nyssa,sylvatica,,,,,
+Ostrya virginiana,"ironwood, hophornbeam",Ostrya,virginiana,,,,,
+Platanus occidentalis ,sycamore,Platanus,occidentalis ,Deciduous,Sycamore,Alternate,Simple,Lobed
+Populus alba,white poplar,Populus,alba,,,,,
+Populus deltoides ,cottonwood,Populus,deltoides ,,,,,
+Populus grandidentata ,big tooth aspen,Populus,grandidentata ,,,,,
+Populus tremuloides,trembling aspen,Populus,tremuloides,,,,,
+Prunus americana,wild American plum,Prunus,americana,Deciduous,Cherry,Alternate,Simple,Serrated
+Prunus serotina ,black cherry,Prunus,serotina ,Deciduous,Cherry,Alternate,Simple,Serrated
+Prunus virginiana,chokecherry,Prunus,virginiana,Deciduous,Cherry,Alternate,Simple,Serrated
+Quercus alba,white oak,Quercus,alba,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus bicolor,swamp white oak,Quercus,bicolor,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus coccinea,scarlet oak,Quercus,coccinea,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus ellipsoidalis,northern pin oak,Quercus,ellipsoidalis,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus imbricaria,shingle oak,Quercus,imbricaria,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus macrocarpa ,bur oak,Quercus,macrocarpa ,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus marilandica,blackjack oak,Quercus,marilandica,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus muehlenbergii,chinkapin oak,Quercus,muehlenbergii,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus palustris,pin oak,Quercus,palustris,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus rubra,red oak,Quercus,rubra,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus shumardii,Shumard oak,Quercus,shumardii,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus stellata,post oak,Quercus,stellata,Deciduous,Oak,Alternate,Simple,Lobed
+Quercus velutina,black oak,Quercus,velutina,Deciduous,Oak,Alternate,Simple,Lobed
+Rhus glabra ,smooth sumac,Rhus,glabra ,,,,,
+Robinia pseudoacacia ,black locust,Robinia,pseudoacacia ,Deciduous,Locust,Alternate,Compound,Entire
+Salix nigra,black willow,Salix,nigra,,,,,
+Sassafras albidum,sassafras,Sassafras,albidum,Deciduous,Sassafras,Alternate,Simple,Lobed/Entire
+Syringa reticulata,Japanese tree lilac,Syringa,reticulata,,,,,
+Tilia americana,basswood,Tilia,americana,Deciduous,Basswood,Alternate,Simple,Serrated
+Ulmus americana,American elm,Ulmus,americana,Deciduous,Elm,Alternate,Simple,Serrated
+Ulmus pumila,Siberian elm,Ulmus,pumila,Deciduous,Elm,Alternate,Simple,Serrated
+Ulmus rubra,"slippery elm, red elm",Ulmus,rubra,Deciduous,Elm,Alternate,Simple,Serrated
+Ulmus thomasii,rock elm,Ulmus,thomasii,Deciduous,Elm,Alternate,Simple,Serrated
+Viburnum lentago,nannyberry,Viburnum,lentago,,,,,
+Zelkova serrata,zelkova,Zelkova,serrata,,,,,
+,,,,,,,,
+Juglan cinera,,Juglan,cinera,,,,,
+Psuedotuga menziesii,Douglas Fir,Psuedotuga,menziesii,,,,,
+Picea abies,,Picea,abies,Conifer,Spruce,Needle-like,Needle,Entire
+Pinus stobus,,Pinus,stobus,Conifer,Pine,Needle-like,Needle,Entire
+Juniperus virginiana,,Juniperus,virginiana,,,,,
+Quercus robur,,Quercus,robur,Deciduous,Oak,Alternate,Simple,Lobed
+Pinus resinosa,,Pinus,resinosa,Conifer,Pine,Needle-like,Needle,Entire
+Pinus echinata,,Pinus,echinata,Conifer,Pine,Needle-like,Needle,Entire
+Pinus contorta,,Pinus,contorta,Conifer,Pine,Needle-like,Needle,Entire
+Thuja occidentalis,,Thuja,occidentalis,Conifer,Cedar,Scale-like,Scale-like,Entire
+Pinus thunbergii,,Pinus,thunbergii,Conifer,Pine,Needle-like,Needle,Entire
+Viburnum_carlesii,,Viburnum_carlesii,,,,,,
+Rhus typhina,,Rhus,typhina,,,,,
+Syringa vulgaris,,Syringa,vulgaris,,,,,
+Castanea dentat,,Castanea,dentat,,,,,
+Zelus luridus,,Zelus,luridus,,,,,
+,box elder,Acer,negundo,Deciduous,Maple,Opposite,Simple,Lobed
+,black maple,Acer,nigrum,Deciduous,Maple,Opposite,Simple,Lobed
+,silver maple,Acer,saccharinum,Deciduous,Maple,Opposite,Simple,Lobed
+,bur oak,Quercus,macrocarpa,Deciduous,Oak,Alternate,Compound,Lobed
+,bitternut hickory,Carya,cordiformis,Deciduous,Hickory,Alternate,Compound,Serrated
+,butternut,Juglans,cinerea,Deciduous,Walnut,Alternate,Compound,Serrated
+,pecan,Carya,illinoinensis,Deciduous,Hickory,Alternate,Compound,Serrated
+,white ash,Fraxinus,americana,Deciduous,Ash,Opposite,Simple,Serrated
+,eastern white pine,Pinus,strobus,Conifer,Pine,Needle-like,Needle,Entire
+,jack pine,Pinus,banksiana,Conifer,Pine,Needle-like,Needle,Entire
+,loblolly pine,Pinus,taeda,Conifer,Pine,Needle-like,Needle,Entire
+,longleaf pine,Pinus,palustris,Conifer,Pine,Needle-like,Needle,Entire
+,eastern hemlock,Tsuga,canadensis,Conifer,Hemlock,Needle-like,Needle,Entire
+,balsam fir,Abies,balsamea,Conifer,Fir,Needle-like,Needle,Entire
+,black spruce,Picea,mariana,Conifer,Spruce,Needle-like,Needle,Entire
+,white spruce,Picea,glauca,Conifer,Spruce,Needle-like,Needle,Entire
+,tamarack,Larix,laricina,Conifer,Larch,Needle-like,Needle,Entire
+,Atlantic white cedar,Chamaecyparis,thyoides,Conifer,Cedar,Scale-like,Scale-like,Entire
+,bald cypress,Taxodium,distichum,Conifer,Cypress,Needle-like,Needle,Entire
+,American sycamore,Platanus,occidentalis,Deciduous,Sycamore,Alternate,Compound,Lobed
+,sweetgum,Liquidambar,styraciflua,Deciduous,Sweetgum,Alternate,Compound,Lobed
+,black cherry,Prunus,serotina,Deciduous,Cherry,Alternate,Compound,Serrated
+,hackberry,Celtis,occidentalis,Deciduous,Hackberry,Alternate,Compound,Serrated
+,Kentucky coffeetree,Gymnocladus,dioicus,Deciduous,Coffee tree,Alternate,Compound,Entire
+,black locust,Robinia,pseudoacacia,Deciduous,Locust,Alternate,Compound,Entire
+,tree-of-heaven,Ailanthus,altissima,Deciduous,Invasive,Alternate,Compound,Entire
+,glossy buckthorn,Frangula,alnus,Deciduous,Buckthorn,Alternate,Compound,Serrated
+,common buckthorn,Rhamnus,cathartica,Deciduous,Buckthorn,Alternate,Compound,Serrated
+,callery pear,Pyrus,calleryana,Deciduous,Pear,Alternate,Compound,Entire
+,princess tree,Paulownia,tomentosa,Deciduous,Paulownia,Opposite,Simple,Entire

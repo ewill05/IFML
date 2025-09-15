@@ -119,7 +119,12 @@ def load_reference_db(path: str = REFERENCE_CSV) -> pd.DataFrame:
             ren[cols["genus"]] = "Genus"
         if "species" in cols:
             ren[cols["species"]] = "Species"
-        return df.rename(columns=ren)
+        df = df.rename(columns=ren)
+        for col in ["Common Name", "Genus", "Species"]:
+            if col not in df.columns:
+                df[col] = ""
+            df[col] = df[col].astype(str).str.strip()
+        return df[["Common Name", "Genus", "Species"]]
     except Exception:
         return pd.DataFrame(columns=["Common Name", "Genus", "Species"])
 
@@ -129,7 +134,10 @@ def autofill_species(df: pd.DataFrame, ref: pd.DataFrame) -> pd.DataFrame:
     if ref.empty:
         return df
     lookup = {
-        str(r.get("Common Name", "")).strip().lower(): (r.get("Genus", ""), r.get("Species", ""))
+        str(r.get("Common Name", "")).strip().lower(): (
+            str(r.get("Genus", "")).strip(),
+            str(r.get("Species", "")).strip(),
+        )
         for _, r in ref.iterrows()
     }
     for idx, row in df.iterrows():
