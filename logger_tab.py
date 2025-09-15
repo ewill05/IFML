@@ -99,8 +99,12 @@ def next_record_id(genus: str, species: str) -> str:
     return f"{safe_slug(g)}_{safe_slug(sp)}_{(n + 1):02d}"
 
 
-# Reference species list for autofill during CSV import
-REFERENCE_CSV = "North_American_Tree_Database_Full.csv"
+# Reference species list for autofill during CSV import.  Resolve the CSV
+# relative to this module so imports work even if the working directory
+# differs.
+REFERENCE_CSV = os.path.join(
+    os.path.dirname(__file__), "North_American_Tree_Database_Full.csv"
+)
 
 
 def load_reference_db(path: str = REFERENCE_CSV) -> pd.DataFrame:
