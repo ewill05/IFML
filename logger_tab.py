@@ -99,6 +99,49 @@ def next_record_id(genus: str, species: str) -> str:
     return f"{safe_slug(g)}_{safe_slug(sp)}_{(n + 1):02d}"
 
 
+# Reference species list for autofill during CSV import
+REFERENCE_CSV = "North_American_Tree_Database_Full.csv"
+
+
+def load_reference_db(path: str = REFERENCE_CSV) -> pd.DataFrame:
+    """Load the optional reference species database."""
+    try:
+        df = pd.read_csv(path, dtype=str).fillna("")
+        cols = {c.strip().lower().replace(" ", "").replace("_", ""): c for c in df.columns}
+        ren = {}
+        if "commonname" in cols:
+            ren[cols["commonname"]] = "Common Name"
+        if "genus" in cols:
+            ren[cols["genus"]] = "Genus"
+        if "species" in cols:
+            ren[cols["species"]] = "Species"
+        return df.rename(columns=ren)
+    except Exception:
+        return pd.DataFrame(columns=["Common Name", "Genus", "Species"])
+
+
+def autofill_species(df: pd.DataFrame, ref: pd.DataFrame) -> pd.DataFrame:
+    """Fill missing Genus/Species using Common Name via reference table."""
+    if ref.empty:
+        return df
+    lookup = {
+        str(r.get("Common Name", "")).strip().lower(): (r.get("Genus", ""), r.get("Species", ""))
+        for _, r in ref.iterrows()
+    }
+    for idx, row in df.iterrows():
+        genus = str(row.get("Genus", "")).strip()
+        species = str(row.get("Species", "")).strip()
+        if genus and species:
+            continue
+        common = str(row.get("Common Name", "")).strip().lower()
+        g, s = lookup.get(common, (genus, species))
+        if not genus:
+            df.at[idx, "Genus"] = g
+        if not species:
+            df.at[idx, "Species"] = s
+    return df
+
+
 def load_species_aliases():
     """
     Load species for autocomplete from the DB path saved by the Species tab.
@@ -325,23 +368,29 @@ def build_logger_tab(notebook: ttk.Notebook):
     search_entry.pack(side="left")
 
     table_cols = LOG_COLUMNS
-    tree = ttk.Treeview(right_panel, columns=table_cols, show="headings", height=16, selectmode="extended")
+    table_frame = ttk.Frame(right_panel)
+    table_frame.pack(side="top", fill="both", expand=True, pady=(8, 0))
+    tree = ttk.Treeview(table_frame, columns=table_cols, show="headings", height=16, selectmode="extended")
     for c in table_cols:
         width = 120
         if c in ("Notes", "Photo Path"): width = 220
         if c in ("Genus", "Species", "Common Name"): width = 140
         tree.heading(c, text=c); tree.column(c, width=width, anchor="w")
-    tree.pack(side="left", fill="both", expand=True, pady=(8, 0))
+
+    vsb = ttk.Scrollbar(table_frame, orient="vertical", command=tree.yview)
+    hsb = ttk.Scrollbar(table_frame, orient="horizontal", command=tree.xview)
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree.grid(row=0, column=0, sticky="nsew")
+    vsb.grid(row=0, column=1, sticky="ns")
+    hsb.grid(row=1, column=0, sticky="ew")
+    table_frame.grid_rowconfigure(0, weight=1)
+    table_frame.grid_columnconfigure(0, weight=1)
 
     # THEME-ADAPTIVE TAG COLORS
     def _apply_row_tag_styles():
         style_row_tags_for_treeview(tree)
     _apply_row_tag_styles()
     register_theme_listener(_apply_row_tag_styles)  # re-apply on theme switch
-
-    yscroll = ttk.Scrollbar(right_panel, orient="vertical", command=tree.yview)
-    tree.configure(yscrollcommand=yscroll.set)
-    yscroll.pack(side="right", fill="y", pady=(8, 0))
 
     # Status line (count of rows)
     status = ttk.Label(right_panel, text="", style="Muted.TLabel")
@@ -420,12 +469,34 @@ def build_logger_tab(notebook: ttk.Notebook):
         if not path:
             return
         try:
-            inc = pd.read_csv(path)
+            inc = pd.read_csv(path, dtype=str).fillna("")
             for c in LOG_COLUMNS:
                 if c not in inc.columns:
                     inc[c] = False if c in BOOL_COLUMNS else ""
+            for c in BOOL_COLUMNS:
+                inc[c] = inc[c].astype(str).str.lower().isin(["1", "true", "yes", "y"])
             inc = inc[LOG_COLUMNS]
+
+            ref = load_reference_db()
+            inc = autofill_species(inc, ref)
+
             df = read_log_df()
+            existing = df[["Genus", "Species", "Record ID"]].copy()
+            for idx, row in inc.iterrows():
+                rid = str(row.get("Record ID", "")).strip()
+                if not rid:
+                    g = row.get("Genus", "")
+                    s = row.get("Species", "")
+                    subset = existing[(existing["Genus"] == g) & (existing["Species"] == s)]
+                    n = 0
+                    for ridx in subset.get("Record ID", pd.Series(dtype=str)).dropna().astype(str):
+                        m = re.search(r"_(\d+)$", ridx)
+                        if m:
+                            n = max(n, int(m.group(1)))
+                    rid = f"{safe_slug(g)}_{safe_slug(s)}_{(n + 1):02d}"
+                    inc.at[idx, "Record ID"] = rid
+                    existing = pd.concat([existing, pd.DataFrame([{ "Genus": g, "Species": s, "Record ID": rid }])], ignore_index=True)
+
             df = pd.concat([df, inc], ignore_index=True)
             write_log_df(df)
             messagebox.showinfo("Import", f"Imported {len(inc)} rows.")

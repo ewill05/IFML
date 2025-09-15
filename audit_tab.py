@@ -102,22 +102,28 @@ def build_audit_tab(notebook: ttk.Notebook):
 
     # ───────── Table ─────────
     table_cols = TABLE_COLUMNS
-    tree = ttk.Treeview(frame, columns=table_cols, show="headings", height=18, selectmode="extended")
+    table_frame = ttk.Frame(frame)
+    table_frame.pack(fill="both", expand=True, padx=8, pady=(0,8))
+    tree = ttk.Treeview(table_frame, columns=table_cols, show="headings", height=18, selectmode="extended")
     for c in table_cols:
         w = 120
         if c in ("Genus","Species","Common Name"): w = 140
         if c in ("Missing",): w = 220
         tree.heading(c, text=c); tree.column(c, width=w, anchor="w")
-    tree.pack(fill="both", expand=True, padx=8, pady=(0,8))
+    vsb = ttk.Scrollbar(table_frame, orient="vertical", command=tree.yview)
+    hsb = ttk.Scrollbar(table_frame, orient="horizontal", command=tree.xview)
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree.grid(row=0, column=0, sticky="nsew")
+    vsb.grid(row=0, column=1, sticky="ns")
+    hsb.grid(row=1, column=0, sticky="ew")
+    table_frame.grid_rowconfigure(0, weight=1)
+    table_frame.grid_columnconfigure(0, weight=1)
 
     # Theme-adaptive zebra + missing highlight
     def _apply_row_tag_styles():
         style_row_tags_for_treeview(tree)
     _apply_row_tag_styles()
     register_theme_listener(_apply_row_tag_styles)
-
-    yscroll = ttk.Scrollbar(frame, orient="vertical", command=tree.yview)
-    tree.configure(yscrollcommand=yscroll.set); yscroll.place(in_=tree, relx=1, rely=0, relheight=1, x=-1)
 
     def load_and_render():
         df = read_log_df()

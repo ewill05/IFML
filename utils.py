@@ -1,8 +1,12 @@
 # utils.py — multi-theme system + logo loader + DPI + observers
 import os
-from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import ttk
+
+try:
+    from PIL import Image, ImageTk
+except Exception:  # pillow is optional
+    Image = ImageTk = None
 
 # Your logo should be at assets/logo.png
 LOGO_PATH = os.path.join("assets", "logo.png")
@@ -98,8 +102,11 @@ def set_dpi_awareness(root: tk.Tk):
         pass
 
 def load_logo(max_height: int = 150):
+    if not os.path.exists(LOGO_PATH):
+        return None
+
     try:
-        if os.path.exists(LOGO_PATH):
+        if Image and ImageTk:
             img = Image.open(LOGO_PATH)
             w, h = img.size
             if h <= 0:
@@ -107,9 +114,10 @@ def load_logo(max_height: int = 150):
             new_w = int(w * (max_height / h))
             img = img.resize((new_w, max_height), Image.LANCZOS)
             return ImageTk.PhotoImage(img)
+        # Fallback using Tkinter's built-in image loader
+        return tk.PhotoImage(file=LOGO_PATH)
     except Exception:
         return None
-    return None
 
 # Theme engine
 def apply_theme(root: tk.Tk, mode: str = "Dark", accent: str | None = None):
